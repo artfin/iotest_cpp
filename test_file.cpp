@@ -17,7 +17,12 @@ vector<uint64_t> GenerateData( size_t bytes )
 	vector<uint64_t> data( bytes / sizeof(uint64_t));
 	iota( data.begin(), data.end(), 0 );
 	shuffle( data.begin(), data.end(), mt19937{random_device{}() });
-	
+
+    for ( int i = 0; i < 10; i++ )
+    {
+        cout << "data(" << i << ") = " << data[i] << endl;
+    }
+
 	return data;
 }
 
@@ -74,11 +79,12 @@ int main()
 	const size_t MB = 1024 * kB;
 	const size_t GB = 1024 * MB;
 	
-	for ( size_t size = 1 * MB; size <= 1 * GB; size *= 2)
+	for ( size_t size = 1 * MB; size <= 2 * MB; size *= 2)
 	{
 		cout << "option_1, " << size / MB << " MB: " << option_1( size ) << " ms" << endl;
 	}
 
+    /*
 	for ( size_t size = 1 * MB; size <= 1 * GB; size *= 2 )
 	{
 		cout << "option_2, " << size / MB << " MB: " << option_2( size ) << "ms" << endl;
@@ -88,6 +94,7 @@ int main()
 	{
 		cout << "option_3, " << size / MB << " MB: " << option_3( size ) << " ms" << endl;
 	}
+    */
 
 	return 0;
 }
